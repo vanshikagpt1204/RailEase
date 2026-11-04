@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}RailEase{% endblock %} | Smart Train Booking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head><body>
+<nav class="nav"><a class="brand" href="{{ url_for('index') }}"><span class="brand-icon">R</span>Rail<span>Ease</span></a>
+<div class="navlinks"><a href="{{ url_for('index') }}">Book tickets</a><a href="{{ url_for('about') }}">About</a>{% if g.user %}<a href="{{ url_for('my_bookings') }}">My bookings</a><span class="welcome">Hi, {{ g.user.name.split()[0] }}</span><a class="navbtn ghost" href="{{ url_for('logout') }}">Logout</a>{% else %}<a href="{{ url_for('login') }}">Login</a><a class="navbtn" href="{{ url_for('signup') }}">Sign up</a>{% endif %}</div></nav>
+<main>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}<div class="alerts">{% for category,message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer><div class="footer-inner"><a class="brand" href="/"> <span class="brand-icon">R</span>Rail<span>Ease</span></a><p>Plan smarter. Travel happier.</p><small>Demo booking experience · Not affiliated with Indian Railways</small></div></footer></body></html>
