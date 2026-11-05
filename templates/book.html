@@ -1,1 +1,110 @@
-{% extends "base.html" %}{% block title %}Passenger details{% endblock %}{% block content %}<section class="page-head"><span class="eyebrow">ALMOST THERE</span><h1>Passenger <em>details</em></h1><p>Review your selected demo train and add traveller information.</p></section><div class="booking-layout"><div class="train-card"><span class="train-no">TRAIN {{ train.no }}</span><h2>{{ train.name }}</h2><div class="journey"><div><b>{{ train.depart }}</b><small>{{ stations[train.from] }}</small></div><div class="journey-line"><small>{{ train.duration }}</small><span></span></div><div><b>{{ train.arrive }}</b><small>{{ stations[train.to] }}</small></div></div><div class="summary-row"><span>Journey date</span><b>{{ date }}</b></div><div class="summary-row"><span>Base fare</span><b>₹{{ train.fare }}</b></div></div><form method="post" class="auth-card"><input type="hidden" name="train_no" value="{{ train.no }}"><input type="hidden" name="journey_date" value="{{ date }}"><span class="eyebrow">TRAVELLER INFO</span><h2>Who is travelling?</h2><label>Passenger name<input name="passenger" required placeholder="Name as per ID"></label><label>Age<input name="age" type="number" min="1" max="120" required placeholder="Age"></label><label>Travel class<select name="travel_class">{% for c in train.classes %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select></label><div class="notice">This demo creates a local booking record only. No payment or real ticket is issued.</div><button class="primary full">Confirm demo booking →</button></form></div>{% endblock %}
+
+{% extends "base.html" %}
+
+{% block title %}Passenger Details | RailEase{% endblock %}
+
+{% block content %}
+
+<section class="page-head">
+    <span class="eyebrow">RAILEASE · BOOKING</span>
+    <h1>Complete your <em>journey</em></h1>
+    <p>Enter traveller details to continue with your demo booking.</p>
+</section>
+
+<div class="booking-layout">
+
+    <div class="train-card">
+        <span class="train-no">TRAIN {{ train.no }}</span>
+        <h2>{{ train.name }}</h2>
+
+        <div class="journey">
+            <div>
+                <b>{{ train.depart }}</b>
+                <small>{{ stations.get(train.from, train.from) }}</small>
+            </div>
+
+            <div class="journey-line">
+                <small>{{ train.duration }}</small>
+                <span></span>
+            </div>
+
+            <div>
+                <b>{{ train.arrive }}</b>
+                <small>{{ stations.get(train.to, train.to) }}</small>
+            </div>
+        </div>
+
+        <div class="summary-row">
+            <span>Journey date</span>
+            <b>{{ date }}</b>
+        </div>
+
+        <div class="summary-row">
+            <span>Train number</span>
+            <b>{{ train.no }}</b>
+        </div>
+
+        <div class="summary-row">
+            <span>Demo base fare</span>
+            <b>₹{{ train.fare }}</b>
+        </div>
+
+        <div class="notice">
+            Demo inventory only. Fare and seat count are illustrative,
+            not actual railway availability.
+        </div>
+    </div>
+
+    <form method="post" class="auth-card">
+
+        <input type="hidden" name="train_no" value="{{ train.no }}">
+        <input type="hidden" name="journey_date" value="{{ date }}">
+
+        <span class="eyebrow">STEP 1 OF 3</span>
+        <h2>Traveller details</h2>
+
+        <label>
+            Passenger full name
+            <input
+                name="passenger"
+                required
+                maxlength="100"
+                placeholder="Enter full name"
+            >
+        </label>
+
+        <label>
+            Age
+            <input
+                name="age"
+                type="number"
+                min="1"
+                max="120"
+                required
+                placeholder="Enter age"
+            >
+        </label>
+
+        <label>
+            Select travel class
+            <select name="travel_class" required>
+                {% for c in train.classes %}
+                <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <div class="notice">
+            This is a demonstration booking. No real ticket,
+            railway PNR or payment will be generated.
+        </div>
+
+        <button class="primary full" type="submit">
+            Continue to booking review →
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

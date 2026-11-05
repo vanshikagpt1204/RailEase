@@ -1,0 +1,93 @@
+
+{% extends "base.html" %}
+
+{% block title %}Review Booking | RailEase{% endblock %}
+
+{% block content %}
+
+<section class="page-head">
+    <span class="eyebrow">STEP 2 OF 3</span>
+    <h1>Review your <em>booking</em></h1>
+    <p>Please verify your journey and passenger information.</p>
+</section>
+
+<div class="booking-layout">
+
+    <div class="train-card">
+        <span class="eyebrow">JOURNEY SUMMARY</span>
+        <h2>{{ train.name }}</h2>
+
+        <span class="train-no">TRAIN {{ train.no }}</span>
+
+        <div class="journey">
+            <div>
+                <b>{{ train.depart }}</b>
+                <small>{{ stations.get(train.from, train.from) }}</small>
+            </div>
+
+            <div class="journey-line">
+                <small>{{ train.duration }}</small>
+                <span></span>
+            </div>
+
+            <div>
+                <b>{{ train.arrive }}</b>
+                <small>{{ stations.get(train.to, train.to) }}</small>
+            </div>
+        </div>
+
+        <div class="summary-row">
+            <span>Journey date</span>
+            <b>{{ date }}</b>
+        </div>
+
+        <div class="summary-row">
+            <span>Passenger</span>
+            <b>{{ passenger }}</b>
+        </div>
+
+        <div class="summary-row">
+            <span>Age</span>
+            <b>{{ age }}</b>
+        </div>
+
+        <div class="summary-row">
+            <span>Travel class</span>
+            <b>{{ travel_class }}</b>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <span class="eyebrow">FARE SUMMARY</span>
+        <h2>Price breakdown</h2>
+
+        <div class="summary-row">
+            <span>Demo base fare</span>
+            <b>₹{{ fare }}</b>
+        </div>
+
+        <div class="summary-row">
+            <span>Additional charges</span>
+            <b>₹0</b>
+        </div>
+
+        <div class="summary-row">
+            <strong>Total demo amount</strong>
+            <strong>₹{{ fare }}</strong>
+        </div>
+
+        <div class="notice">
+            This is an illustrative demo fare. No actual railway
+            fare or payment is being charged.
+        </div>
+
+        <form method="post" action="{{ url_for('demo_payment') }}">
+            <button class="primary full" type="submit">
+                Continue to demo payment →
+            </button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

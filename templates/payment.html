@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+{% block title %}Demo Payment | RailEase{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <span class="eyebrow">STEP 3 OF 3</span>
+    <h1>Complete your <em>payment</em></h1>
+    <p>This is a simulated payment for the RailEase demonstration.</p>
+</section>
+
+<div class="booking-layout">
+    <div class="train-card">
+        <span class="eyebrow">BOOKING SUMMARY</span>
+        <h2>{{ booking.train.name }}</h2>
+
+        <div class="summary-row">
+            <span>Train number</span>
+            <b>{{ booking.train.no }}</b>
+        </div>
+        <div class="summary-row">
+            <span>Journey date</span>
+            <b>{{ booking.date }}</b>
+        </div>
+        <div class="summary-row">
+            <span>Passenger</span>
+            <b>{{ booking.passenger }}</b>
+        </div>
+        <div class="summary-row">
+            <span>Travel class</span>
+            <b>{{ booking.travel_class }}</b>
+        </div>
+        <div class="summary-row">
+            <strong>Total demo amount</strong>
+            <strong>₹{{ booking.fare }}</strong>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <span class="eyebrow">DEMO CHECKOUT</span>
+        <h2>Choose payment method</h2>
+
+        <div class="notice">
+            Demo mode: No real money will be deducted. No card, UPI or bank
+            details are required.
+        </div>
+
+        <div class="summary-row">
+            <span>UPI</span>
+            <b>Demo payment</b>
+        </div>
+        <div class="summary-row">
+            <span>Card</span>
+            <b>Demo payment</b>
+        </div>
+        <div class="summary-row">
+            <span>Net Banking</span>
+            <b>Demo payment</b>
+        </div>
+
+        <form method="POST">
+            <button class="primary full" type="submit">
+                Simulate Successful Payment →
+            </button>
+        </form>
+
+        <p class="muted">
+            Clicking the button simulates a successful payment for testing only.
+        </p>
+    </div>
+</div>
+{% endblock %}
