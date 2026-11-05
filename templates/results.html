@@ -1,4 +1,4 @@
-
+﻿
 {% extends "base.html" %}
 
 {% block title %}Train Results{% endblock %}
@@ -10,16 +10,16 @@
 
     <h1>
         {{ stations.get(origin, origin) }}
-        <em>→</em>
+        <em>â†’</em>
         {{ stations.get(destination, destination) }}
     </h1>
 
-    <p>{{ date }} · {{ trains|length }} train(s) found</p>
+    <p>{{ date }} Â· {{ trains|length }} train(s) found</p>
 </section>
 
 <div class="notice">
     Live train information provided by {{ data_source }}.
-    Fare and seat availability are not currently available.
+    Fares and seat availability shown in this demo are illustrative only. Actual railway fares and seat availability are not verified.
 </div>
 
 {% if error %}
@@ -51,7 +51,7 @@
                 <b>{{ t.depart }}</b>
                 <small>
                     {{ stations.get(t.from, t.from) }}
-                    · {{ t.from }}
+                    Â· {{ t.from }}
                 </small>
             </div>
 
@@ -64,7 +64,7 @@
                 <b>{{ t.arrive }}</b>
                 <small>
                     {{ stations.get(t.to, t.to) }}
-                    · {{ t.to }}
+                    Â· {{ t.to }}
                 </small>
             </div>
 
@@ -78,12 +78,12 @@
     </div>
 
     <div class="fare">
-        Demo fare: <b>₹{{ t.fare }}</b>
+        Demo fare: <b>â‚¹{{ t.fare }}</b>
     </div>
 
     <a class="primary small"
        href="{{ url_for('book', train=t.no, date=date) }}">
-       Book Now →
+       Book Now â†’
     </a>
 
 </div>
@@ -100,7 +100,7 @@
 {% else %}
 
     <div class="empty">
-        <div>🚉</div>
+        <div>ðŸš‰</div>
         <h2>No trains found</h2>
         <p>Try another route or journey date.</p>
         <a class="primary" href="/">Search again</a>
@@ -109,3 +109,4 @@
 {% endif %}
 
 {% endblock %}
+
